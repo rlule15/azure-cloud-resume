@@ -216,3 +216,41 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ==============================================================================
+# Terraform / OpenTofu
+# ==============================================================================
+
+# Compiled provider plugins and local cache directories
+**/.terraform/*
+.terraform/
+
+# Terraform CLI runtime configuration file
+.terraformrc
+terraform.rc
+
+# State files (NEVER commit state files - they contain unencrypted secrets and cloud resource IDs)
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Exclude sensitive variable files (these often hold secrets, tokens, or subscription IDs)
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# CLI plan files (may hold unencrypted sensitive data evaluated during plan)
+*.tfplan
+
+# Terraform cloud and workspace data
+.terraform.lock.hcl.old
+
+# NOTE: Do NOT ignore `.terraform.lock.hcl`
+# HashiCorp recommends committing `.terraform.lock.hcl` to ensure deterministic provider versions across CI/CD.
