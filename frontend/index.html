@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rafael Lule | Resume</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0284c7;
+            --border: #334155;
+            --tag-bg: #0f172a;
+            --max-width: 850px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2.5rem 1rem;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            color: var(--text-main);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .visitor-badge {
+            font-size: 0.85rem;
+            background: var(--tag-bg);
+            border: 1px solid var(--border);
+            padding: 0.3rem 0.75rem;
+            border-radius: 9999px;
+            color: var(--accent);
+            font-family: ui-monospace, monospace;
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            color: var(--accent);
+            margin-top: 0.25rem;
+            font-weight: 500;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-links a:hover {
+            color: var(--accent);
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        section:last-of-type {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.4rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .entry {
+            margin-bottom: 1.5rem;
+        }
+
+        .entry:last-child {
+            margin-bottom: 0;
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .role-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text-main);
+        }
+
+        .organization {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .date-location {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-family: ui-monospace, monospace;
+        }
+
+        ul {
+            list-style-position: outside;
+            margin-left: 1.25rem;
+            margin-top: 0.5rem;
+        }
+
+        li {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+        }
+
+        li:last-child {
+            margin-bottom: 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-category h3 {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 0.4rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .skill-tag {
+            background: var(--tag-bg);
+            border: 1px solid var(--border);
+            color: #cbd5e1;
+            padding: 0.2rem 0.55rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media print {
+            body {
+                background: #ffffff;
+                color: #000000;
+                padding: 0;
+            }
+
+            .container {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+
+            .visitor-badge {
+                display: none;
+            }
+
+            h1,
+            .role-title,
+            .skill-category h3 {
+                color: #000000;
+            }
+
+            .subtitle,
+            .organization,
+            h2 {
+                color: #0284c7;
+            }
+
+            li,
+            .date-location,
+            .contact-links a {
+                color: #334155;
+            }
+
+            .skill-tag {
+                border: 1px solid #cbd5e1;
+                background: #f8fafc;
+                color: #0f172a;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1>Rafael Lule</h1>
+                <div class="visitor-badge">
+                    Visitors: <span id="counter">Loading...</span>
+                </div>
+            </div>
+            <p class="subtitle">Cloud & Infrastructure Automation | Systems & Software Development</p>
+            <div class="contact-links">
+                <a href="mailto:rafael.lule10@yahoo.com">Email</a>
+                <a href="https://linkedin.com/in/rafael-lule-2bb458302" target="_blank" rel="noopener">LinkedIn</a>
+                <span>Minnesota, USA</span>
+            </div>
+        </header>
+
+        <section id="education">
+            <h2>Education</h2>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="role-title">Bachelor of Science in Computer Information Technology</span>
+                    <span class="date-location">Expected May 2027</span>
+                </div>
+                <div class="entry-header">
+                    <span class="organization">Minnesota State University Moorhead</span>
+                    <span class="date-location">Minor: Cybersecurity</span>
+                </div>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="role-title">Associate of Applied Science in Computer Programming</span>
+                    <span class="date-location">Dec 2025</span>
+                </div>
+                <div class="entry-header">
+                    <span class="organization">St. Cloud Technical Community College</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="role-title">Infrastructure Code Development Intern</span>
+                    <span class="date-location">June 2026 – Aug 2026</span>
+                </div>
+                <div class="organization">Medica | Minnetonka, MN</div>
+                <ul>
+                    <li>Engineered an automated server maintenance pipeline using Azure DevOps and Ansible to remotely
+                        execute PowerShell management scripts across target Windows servers. </li>
+                    <li>Refactored existing PowerShell disk cleanup scripts using DRY principles and structured
+                        try/catch error handling, reducing codebase length by 15% while boosting execution reliability.
+                    </li>
+                    <li>Resolved server infrastructure tickets in ServiceNow covering server provisioning,
+                        decommissioning, missing services, and disk space issues via remote administration and
+                        PowerShell. </li>
+                    <li>Utilized VMware vCenter specifically to expand storage volumes and create snapshot of virtual
+                        machines. </li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="role-title">IT Support Specialist Intern</span>
+                    <span class="date-location">Jun 2025 – Aug 2025</span>
+                </div>
+                <div class="organization">Accra Care LLC | Minnetonka, MN</div>
+                <ul>
+                    <li>Provisioned and administered end-user accounts and hardware via Intune, Microsoft 365 and
+                        Active Directory, ensuring seamless onboarding and secure access control. </li>
+                    <li>Managed the end-to-end device lifecycle for Windows fleets, successfully executing refreshes
+                        and decommissioning for 85% of targeted users to modernize company infrastructure. </li>
+                    <li>Orchestrated a company-wide iPhone refresh for 1/3 of the organization, coordinated device
+                        provisioning, data migration, and hardware swaps to minimize user downtime. </li>
+                    <li>Resolved complex technical escalation using the FreshService ITMS platform, while also
+                        collaborating with thirdparty vendors for hardware repairs.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Engineering Projects</h2>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="role-title">Automated Event-Driven Self-Healing Pipeline </span>
+                    <span class="date-location">Datadog, Github Actions, Ansible</span>
+                </div>
+                <ul>
+                    <li>Architected an event-driven auto-remediation pipeline linking Datadog metric alert webhooks to
+                        GitHub Actions to resolve infrastructure anomalies autonomously.</li>
+                    <li>Deployed a self-hosted GitHub Actions runner as a system service on an internal Linux VM to
+                        execute remediation workflows securely without public ingress.</li>
+                    <li>Developed idempotent Ansible playbooks to monitor Docker runtime states and automatically
+                        restart crashed containers upon receiving alert triggers.</li>
+                    <li>Automated disk capacity remediation via Ansible to prune unused Docker objects and dynamically
+                        expand Proxmox VM storage before outages occur. </li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="role-title">Homelab Virtualization & Zero-Trust Network</span>
+                    <span class="date-location">Proxmox, UniFi, Tailscale, Ansible</span>
+                </div>
+                <ul>
+                    <li>Created a reusable Ansible role to automate Ubuntu VM provisioning via Cloud-Init templates on
+                        Proxmox VE, standardizing user setup, SSH keys, and network config.</li>
+                    <li>Automated the end-to-end deployment and lifecycle of containerized services (Traefik, n8n,
+                        Uptime Kuma) using Docker and Ansible playbooks.</li>
+                    <li>Configured secure remote ingress using Tailscale mesh networking and a Traefik reverse proxy
+                        with automated SSL/TLS certificates, eliminating public port forwarding.</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Cloud & DevOps</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">Proxmox VE</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">Docker Compose</span>
+                        <span class="skill-tag">Ansible</span>
+                        <span class="skill-tag">YAML</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Programming & Scripting</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C# (.NET)</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">PowerShell</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Systems & Networking</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Linux (RHEL, Ubuntu, Fedora)</span>
+                        <span class="skill-tag">Windows Server</span>
+                        <span class="skill-tag">VLANs & Firewalls</span>
+                        <span class="skill-tag">Tailscale / Zero Trust</span>
+                        <span class="skill-tag">DNS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Cloud Resume Challenge - Step 7 & 9
+        // Replace the placeholder URL with your deployed Azure Function HTTP Trigger URL
+        const functionApiUrl = "https://<YOUR-FUNCTION-APP-NAME>.azurewebsites.net/api/GetResumeCounter";
+
+        async function getVisitCount() {
+            const counterElement = document.getElementById("counter");
+            try {
+                const response = await fetch(functionApiUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP status: ${response.status}`);
+                }
+                const data = await response.json();
+                // Assuming your function returns JSON like: { "count": 42 }
+                counterElement.innerText = data.count;
+            } catch (err) {
+                console.warn("Counter API unavailable or not yet configured:", err);
+                counterElement.innerText = "1"; // Fallback placeholder
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", getVisitCount);
+    </script>
+</body>
+
+</html>
