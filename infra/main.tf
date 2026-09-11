@@ -2,13 +2,13 @@
 locals {
   project = "cloud-resume-challenge"
   env     = "dev"
-  region  = "eus"
+  region  = "ctus"
 }
 
 // Create a resource group
 resource "azurerm_resource_group" "main" {
   name     = "rg-crc-${local.env}-${local.region}"
-  location = "East US"
+  location = "Central US"
 }
 
 // Create static web app
