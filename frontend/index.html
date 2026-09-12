@@ -414,9 +414,8 @@
     </div>
 
     <script>
-        // Cloud Resume Challenge - Step 7 & 9
-        // Replace the placeholder URL with your deployed Azure Function HTTP Trigger URL
-        const functionApiUrl = "https://<YOUR-FUNCTION-APP-NAME>.azurewebsites.net/api/GetResumeCounter";
+
+        const functionApiUrl = "http://localhost:7071/api/GetVisitorCount";
 
         async function getVisitCount() {
             const counterElement = document.getElementById("counter");
@@ -425,12 +424,14 @@
                 if (!response.ok) {
                     throw new Error(`HTTP status: ${response.status}`);
                 }
+
                 const data = await response.json();
-                // Assuming your function returns JSON like: { "count": 42 }
-                counterElement.innerText = data.count;
+                console.log("Visitor count:", data.visitors);
+
+                counterElement.innerText = data.visitors;
             } catch (err) {
                 console.warn("Counter API unavailable or not yet configured:", err);
-                counterElement.innerText = "1"; // Fallback placeholder
+                counterElement.innerText = "1";
             }
         }
 

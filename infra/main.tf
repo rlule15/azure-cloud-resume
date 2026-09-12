@@ -22,16 +22,25 @@ resource "azurerm_static_web_app" "resume" {
 
 // Create a storage account
 resource "azurerm_storage_account" "resume" {
-  name                     = "stcrc${local.env}${local.region}01"
-  resource_group_name      = azurerm_resource_group.main.name
-  location                 = azurerm_resource_group.main.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
+  name                          = "stcrc${local.env}${local.region}01"
+  resource_group_name           = azurerm_resource_group.main.name
+  location                      = azurerm_resource_group.main.location
+  account_tier                  = "Standard"
+  account_replication_type      = "LRS"
+  account_kind                  = "StorageV2"
+  public_network_access_enabled = true
 
   tags = {
     environment = local.env
     Project     = local.project
   }
+}
+
+// Create a storage container
+resource "azurerm_storage_container" "resume" {
+  name                  = "stccrc${local.env}${local.region}01"
+  storage_account_id    = azurerm_storage_account.resume.id
+  container_access_type = "private"
 }
 
 // Create cosmos db account
@@ -78,28 +87,36 @@ resource "azurerm_service_plan" "function_app" {
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
   os_type             = "Linux"
-  sku_name            = "Y1"
+  sku_name            = "FC1"
 }
 
-// Create the function app
-resource "azurerm_linux_function_app" "function_app" {
+resource "azurerm_function_app_flex_consumption" "function_app" {
   name                = "fa-crc-${local.env}-${local.region}"
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
   service_plan_id     = azurerm_service_plan.function_app.id
 
-  storage_account_name       = azurerm_storage_account.resume.name
-  storage_account_access_key = azurerm_storage_account.resume.primary_access_key
+  storage_container_type      = "blobContainer"
+  storage_container_endpoint  = "${azurerm_storage_account.resume.primary_blob_endpoint}${azurerm_storage_container.resume.name}/"
+  storage_authentication_type = "StorageAccountConnectionString"
+  storage_access_key          = azurerm_storage_account.resume.primary_access_key
+  runtime_name                = "python"
+  runtime_version             = "3.14"
+  maximum_instance_count      = 1
+  instance_memory_in_mb       = 512
 
-  site_config {
-    application_stack {
-      python_version = "3.14"
-    }
+  // pass the cosmos db connection string to the function app
+  app_settings = {
+    "AzureWebJobsStorage" = azurerm_storage_account.resume.primary_connection_string
 
-    cors {
-      allowed_origins = ["https://${azurerm_static_web_app.resume.default_host_name}"]
-    }
+    "deployment:storage:type"               = "blobContainer"
+    "deployment:storage:value"              = "${azurerm_storage_account.resume.primary_blob_endpoint}${azurerm_storage_container.resume.name}"
+    "deployment:storage:authenticationType" = "StorageAccountConnectionString"
+
+    "COSMOS_DB_URL" = azurerm_cosmosdb_account.resume_db.endpoint
+    "COSMOS_DB_KEY" = azurerm_cosmosdb_account.resume_db.primary_key
   }
 
-
+  site_config {
+  }
 }
