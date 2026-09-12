@@ -97,7 +97,7 @@ resource "azurerm_function_app_flex_consumption" "function_app" {
   service_plan_id     = azurerm_service_plan.function_app.id
 
   storage_container_type      = "blobContainer"
-  storage_container_endpoint  = "${azurerm_storage_account.resume.primary_blob_endpoint}${azurerm_storage_container.resume.name}/"
+  storage_container_endpoint  = "${azurerm_storage_account.resume.primary_blob_endpoint}${azurerm_storage_container.resume.name}"
   storage_authentication_type = "StorageAccountConnectionString"
   storage_access_key          = azurerm_storage_account.resume.primary_access_key
   runtime_name                = "python"
@@ -108,10 +108,6 @@ resource "azurerm_function_app_flex_consumption" "function_app" {
   // pass the cosmos db connection string to the function app
   app_settings = {
     "AzureWebJobsStorage" = azurerm_storage_account.resume.primary_connection_string
-
-    "deployment:storage:type"               = "blobContainer"
-    "deployment:storage:value"              = "${azurerm_storage_account.resume.primary_blob_endpoint}${azurerm_storage_container.resume.name}"
-    "deployment:storage:authenticationType" = "StorageAccountConnectionString"
 
     "COSMOS_DB_URL" = azurerm_cosmosdb_account.resume_db.endpoint
     "COSMOS_DB_KEY" = azurerm_cosmosdb_account.resume_db.primary_key
