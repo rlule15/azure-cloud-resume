@@ -13,21 +13,16 @@
 name: Deploy web app to Azure Static Web Apps
 
 on:
-  workflow_dispatch:
-  # push:
-  #   branches: [ "main" ]
-  #   paths:
-  #     - frontend/**
-  # pull_request:
-  #   types: [opened, synchronize, reopened, closed]
-  #   branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+    paths:
+      - frontend/**
 
 # Environment variables available to all jobs and steps in this workflow
 env:
   APP_LOCATION: "frontend" # location of your client code
-  API_LOCATION: "" # location of your api source code - optional
+  API_LOCATION: "backend" # location of your api source code - optional
   OUTPUT_LOCATION: "/" # location of client code build output
-  # AZURE_STATIC_WEB_APPS_API_TOKEN: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }} # secret containing deployment token for your static web app
 
 jobs:
   build_and_deploy_job:
