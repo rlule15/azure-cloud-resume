@@ -8,7 +8,7 @@ on:
     #   - frontend/**
 
 jobs:
-  deploy:
+  build_and_deploy_job:
     runs-on: ubuntu-latest
     name: Deploy via SWA CLI
     steps:
@@ -26,4 +26,5 @@ jobs:
         run: |
           swa deploy ./frontend \
             --env production \
+            --skip-app-build \
             --deployment-token "${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}"
