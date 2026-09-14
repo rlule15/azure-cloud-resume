@@ -28,4 +28,4 @@ jobs:
         run: |
           swa deploy ./frontend \
             --env production \
-            --deployment-token "SWA_TOKEN"
+            --deployment-token "$SWA_TOKEN"
