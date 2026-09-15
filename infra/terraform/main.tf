@@ -5,17 +5,24 @@ locals {
   region  = "ctus"
 }
 
-// Create a resource group
-resource "azurerm_resource_group" "main" {
-  name     = "rg-crc-${local.env}-${local.region}"
-  location = "Central US"
+
+// Get the already exsisting resource group
+data "azurerm_resource_group" "main" {
+  name = "rg-crc-${local.env}-${local.region}"
 }
+
+// Create a user assigned managed identity
+# resource "azurerm_user_assigned_identity" "github_oidc" {
+#   name                = "uami-github-${local.env}-${local.region}"
+#   location            = azurerm_resource_group.main.location
+#   resource_group_name = azurerm_resource_group.main.name
+# }
 
 // Create static web app
 resource "azurerm_static_web_app" "resume" {
   name                = "swa-crc-${local.env}-${local.region}"
-  resource_group_name = azurerm_resource_group.main.name
-  location            = azurerm_resource_group.main.location
+  resource_group_name = data.azurerm_resource_group.main.name
+  location            = data.azurerm_resource_group.main.location
   sku_tier            = "Free"
   sku_size            = "Free"
 }
@@ -114,5 +121,8 @@ resource "azurerm_function_app_flex_consumption" "function_app" {
   }
 
   site_config {
+    cors {
+      allowed_origins = ["https://${azurerm_static_web_app.resume.default_host_name}"]
+    }
   }
 }
