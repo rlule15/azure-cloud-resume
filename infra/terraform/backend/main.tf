@@ -11,27 +11,11 @@ data "azurerm_resource_group" "main" {
   name = "rg-crc-${local.env}-${local.region}"
 }
 
-// Create a user assigned managed identity
-# resource "azurerm_user_assigned_identity" "github_oidc" {
-#   name                = "uami-github-${local.env}-${local.region}"
-#   location            = azurerm_resource_group.main.location
-#   resource_group_name = azurerm_resource_group.main.name
-# }
-
-// Create static web app
-resource "azurerm_static_web_app" "resume" {
-  name                = "swa-crc-${local.env}-${local.region}"
-  resource_group_name = data.azurerm_resource_group.main.name
-  location            = data.azurerm_resource_group.main.location
-  sku_tier            = "Free"
-  sku_size            = "Free"
-}
-
 // Create a storage account
 resource "azurerm_storage_account" "resume" {
   name                          = "stcrc${local.env}${local.region}01"
-  resource_group_name           = azurerm_resource_group.main.name
-  location                      = azurerm_resource_group.main.location
+  resource_group_name           = data.azurerm_resource_group.main.name
+  location                      = data.azurerm_resource_group.main.location
   account_tier                  = "Standard"
   account_replication_type      = "LRS"
   account_kind                  = "StorageV2"
@@ -53,8 +37,8 @@ resource "azurerm_storage_container" "resume" {
 // Create cosmos db account
 resource "azurerm_cosmosdb_account" "resume_db" {
   name                = "cosmos-crc-${local.env}-${local.region}"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  location            = data.azurerm_resource_group.main.location
+  resource_group_name = data.azurerm_resource_group.main.name
   offer_type          = "Standard"
   kind                = "GlobalDocumentDB"
 
@@ -67,7 +51,7 @@ resource "azurerm_cosmosdb_account" "resume_db" {
   }
 
   geo_location {
-    location          = azurerm_resource_group.main.location
+    location          = data.azurerm_resource_group.main.location
     failover_priority = 0
   }
 }
@@ -75,14 +59,14 @@ resource "azurerm_cosmosdb_account" "resume_db" {
 // Create cosmos db sql database
 resource "azurerm_cosmosdb_sql_database" "resume_db" {
   name                = "db-crc-${local.env}-${local.region}"
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = data.azurerm_resource_group.main.name
   account_name        = azurerm_cosmosdb_account.resume_db.name
 }
 
 // Create cosmos db sql container (table)
 resource "azurerm_cosmosdb_sql_container" "resume_db" {
   name                = "visitors"
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = data.azurerm_resource_group.main.name
   account_name        = azurerm_cosmosdb_account.resume_db.name
   database_name       = azurerm_cosmosdb_sql_database.resume_db.name
   partition_key_paths = ["/id"]
@@ -91,16 +75,16 @@ resource "azurerm_cosmosdb_sql_container" "resume_db" {
 // Create service plan for az functions
 resource "azurerm_service_plan" "function_app" {
   name                = "sp-crc-${local.env}-${local.region}"
-  resource_group_name = azurerm_resource_group.main.name
-  location            = azurerm_resource_group.main.location
+  resource_group_name = data.azurerm_resource_group.main.name
+  location            = data.azurerm_resource_group.main.location
   os_type             = "Linux"
   sku_name            = "FC1"
 }
 
 resource "azurerm_function_app_flex_consumption" "function_app" {
   name                = "fa-crc-${local.env}-${local.region}"
-  resource_group_name = azurerm_resource_group.main.name
-  location            = azurerm_resource_group.main.location
+  resource_group_name = data.azurerm_resource_group.main.name
+  location            = data.azurerm_resource_group.main.location
   service_plan_id     = azurerm_service_plan.function_app.id
 
   storage_container_type      = "blobContainer"
@@ -118,11 +102,14 @@ resource "azurerm_function_app_flex_consumption" "function_app" {
 
     "COSMOS_DB_URL" = azurerm_cosmosdb_account.resume_db.endpoint
     "COSMOS_DB_KEY" = azurerm_cosmosdb_account.resume_db.primary_key
+
   }
 
   site_config {
-    cors {
-      allowed_origins = ["https://${azurerm_static_web_app.resume.default_host_name}"]
-    }
+  }
+  lifecycle {
+    ignore_changes = [
+      site_config[0].cors
+    ]
   }
 }
