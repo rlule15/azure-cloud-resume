@@ -23,7 +23,7 @@ resource "azurerm_static_web_app" "resume" {
 // Create a cloudflare record for the static web app
 resource "cloudflare_dns_record" "api_cname" {
   zone_id = var.cloudflare_zone_id
-  name    = "api"
+  name    = "resume"
   content = azurerm_static_web_app.resume.default_host_name
   type    = "CNAME"
   proxied = false
