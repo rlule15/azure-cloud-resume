@@ -1,0 +1,8 @@
+{
+  "routes": [
+    {
+      "route": "/api/GetVisitorCount",
+      "rewrite": "FUNCTION_APP_URL_PLACEHOLDER/api/counter?code=FUNCTION_KEY_PLACEHOLDER"
+    }
+  ]
+}
