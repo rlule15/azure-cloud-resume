@@ -22,7 +22,7 @@ on:
 # Environment variables available to all jobs and steps in this workflow
 env:
   APP_LOCATION: "frontend" # location of your client code
-  API_LOCATION: "backend" # location of your api source code - optional
+  API_LOCATION: "" # location of your api source code - optional
   OUTPUT_LOCATION: "/" # location of client code build output
 
 jobs:
