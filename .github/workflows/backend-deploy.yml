@@ -68,3 +68,16 @@ jobs:
         package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
         scm-do-build-during-deployment: true
         enable-oryx-build: true
+
+    - name: Scrape Function-Specific Key & Save to GitHub Secrets
+      env:
+        GH_TOKEN: ${{ secrets.REPO_ADMIN_PAT }}
+      run: |
+        MY_FUNCTION_SPECIFIC_KEY = $(az functionapp function keys list \
+        --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
+        --name ${{ vars.FUNCTIONAPP_NAME }} \
+        --function-name ${{ vars.AZURE_FUNCTION_NAME }} \
+        --query "default" \
+        --output tsv)
+
+        gh secret set MY_FUNCTION_SPECIFIC_KEY --body "$SPECIFIC_KEY"
