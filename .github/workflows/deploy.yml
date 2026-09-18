@@ -48,7 +48,7 @@ jobs:
           FUNCTION_APP_URL: ${{ secrets.FUNCTION_URL }}
           FUNCTION_APP_KEY: ${{ secrets.MY_FUNCTION_KEY }}
         run: |
-          envsubst '${FUNCTION_APP_URL} ${FUNCTION_APP_KEY}' < staticwebapp.config.template.json > staticwebapp.config.json
+          envsubst '${FUNCTION_APP_URL} ${FUNCTION_APP_KEY}' < "$APP_LOCATION/staticwebapp.config.template.json" > "$APP_LOCATION/staticwebapp.config.json"
           
       - name: Build And Deploy
         id: builddeploy
