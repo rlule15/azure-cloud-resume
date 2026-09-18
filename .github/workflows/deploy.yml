@@ -42,6 +42,13 @@ jobs:
           else
             echo "Token secret verified."
           fi
+
+      - name: Substitute Secrets into SWA Config
+        env:
+          FUNCTION_APP_URL: ${{ secrets.FUNCTION_URL }}
+          FUNCTION_APP_KEY: ${{ secrets.MY_FUNCTION_KEY }}
+        run: |
+          envsubst '${FUNCTION_APP_URL} ${FUNCTION_APP_KEY}' < staticwebapp.config.template.json > staticwebapp.config.json
           
       - name: Build And Deploy
         id: builddeploy
@@ -53,3 +60,5 @@ jobs:
           app_location: "${{ env.APP_LOCATION }}"
           api_location: "${{ env.API_LOCATION }}"
           output_location: "${{ env.OUTPUT_LOCATION }}"
+
+      
