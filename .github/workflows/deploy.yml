@@ -37,7 +37,7 @@ jobs:
 
       - name: Inject API URL into JS
         env:
-          FUNCTION_URL: ${{ secrets.FUNCTION_URL }}
+          FUNCTION_URL: ${{ vars.FUNCTION_URL }}
         run: |
           sed -i "s|__API_URL__|${FUNCTION_URL}|g" frontend/js/main.js
           
