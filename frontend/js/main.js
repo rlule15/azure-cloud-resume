@@ -1,4 +1,4 @@
-const functionApiUrl = "/api/GetVisitorCount";
+const functionApiUrl = "__API__URL";
 
 async function getVisitCount() {
   const counterElement = document.getElementById("counter");

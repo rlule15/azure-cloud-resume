@@ -1,8 +1,0 @@
-{
-  "routes": [
-    {
-      "route": "/api/GetVisitorCount",
-      "rewrite": "${FUNCTION_APP_URL}?code=${FUNCTION_APP_KEY}"
-    }
-  ]
-}
