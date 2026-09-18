@@ -73,7 +73,7 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.REPO_ADMIN_PAT }}
       run: |
-        MY_FUNCTION_SPECIFIC_KEY = $(az functionapp function keys list \
+        MY_FUNCTION_SPECIFIC_KEY=$(az functionapp function keys list \
         --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
         --name ${{ vars.FUNCTIONAPP_NAME }} \
         --function-name ${{ vars.AZURE_FUNCTION_NAME }} \
