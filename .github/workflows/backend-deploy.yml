@@ -80,17 +80,7 @@ jobs:
         --query "invokeUrlTemplate" \
         --output tsv)
 
-        gh secret set FUNCTION_URL --body "$FUNCTION_URL"
-        
-    - name: Scrape Function-Specific Key & Save to GitHub Secrets
-      env:
-        GH_TOKEN: ${{ secrets.REPO_ADMIN_PAT }}
-      run: |
-        FUNCTION_SPECIFIC_KEY=$(az functionapp function keys list \
-        --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
-        --name ${{ vars.FUNCTIONAPP_NAME }} \
-        --function-name ${{ vars.AZURE_FUNCTION_NAME }} \
-        --query "default" \
-        --output tsv)
+        gh variable set FUNCTION_URL \
+        -- repo "${{ github.repository }} \
+        --body "$FUNCTION_URL"
 
-        gh secret set FUNCTION_KEY --body "$FUNCTION_SPECIFIC_KEY"
