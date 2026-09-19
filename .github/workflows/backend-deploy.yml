@@ -80,7 +80,7 @@ jobs:
         --query "invokeUrlTemplate" \
         --output tsv)
 
-        gh variable set VITE_VISITOR_FUNCTION_URL \
+        gh variable set FUNCTION_URL \
         --repo "${{ github.repository }}" \
         --body "$FUNCTION_URL"
 
