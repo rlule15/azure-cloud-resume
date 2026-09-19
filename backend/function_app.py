@@ -5,7 +5,7 @@ import os
 import azure.functions as func
 from azure.cosmos import CosmosClient, exceptions
 
-app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
+app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
 try:
     # Database and container names
