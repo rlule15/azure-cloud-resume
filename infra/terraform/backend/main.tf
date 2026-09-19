@@ -13,13 +13,13 @@ data "azurerm_resource_group" "main" {
 
 // Create a storage account
 resource "azurerm_storage_account" "resume" {
-  name                          = "stcrc${local.env}${local.region}01"
-  resource_group_name           = data.azurerm_resource_group.main.name
-  location                      = data.azurerm_resource_group.main.location
-  account_tier                  = "Standard"
-  account_replication_type      = "LRS"
-  account_kind                  = "StorageV2"
-  public_network_access = "Enabled"
+  name                     = "stcrc${local.env}${local.region}01"
+  resource_group_name      = data.azurerm_resource_group.main.name
+  location                 = data.azurerm_resource_group.main.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  account_kind             = "StorageV2"
+  public_network_access    = "Enabled"
 
   tags = {
     environment = local.env
