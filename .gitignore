@@ -299,4 +299,8 @@ coverage/
 *.tsbuildinfo
 .vite/
 .vuepress/dist
+<<<<<<< HEAD
 .nuxt/
+=======
+.nuxt/
+>>>>>>> d06d804 (fix: Change frontend to use Vue.js and Vite)
