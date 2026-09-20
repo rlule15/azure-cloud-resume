@@ -2,7 +2,7 @@
 import { onMounted, ref } from "vue";
 
 const visitorCount = ref(1);
-const visitorStatus = (ref < "loading") | "ready" | ("offline" > "loading");
+const visitorStatus = ref("loading");
 
 const experience = [
   {
