@@ -35,6 +35,18 @@ const experience = [
 
 const projects = [
   {
+    title: "Azure Cloud Resume Challenge",
+    eyebrow: "Azure · GitHub Actions · Terraform",
+    content:
+      "A cloud-hosted personal portfolio website with automated CI/CD and infrastructure-as-code deployment.",
+    bullets: [
+      "Built and managed a cloud environment in Microsoft Azure using Terraform, automating resource setups instead of configuring them manually.",
+      "Created a Python backend using Azure Functions and a cloud database to process requests and update website visitor data.",
+      "Automated testing and deployments with GitHub Actions, using secure keyless logins (OIDC) so sensitive cloud credentials were never hard coded.",
+      "Applied web and network security controls, including HTTPS encryption, Cloudflare DNS routing, and domain access rules (CORS) to prevent unauthorized use.",
+    ],
+  },
+  {
     title: "Automated Event-Driven Self-Healing Pipeline",
     eyebrow: "Datadog · GitHub Actions · Ansible",
     content:
