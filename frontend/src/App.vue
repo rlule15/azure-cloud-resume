@@ -37,6 +37,7 @@ const projects = [
   {
     title: "Azure Cloud Resume Challenge",
     eyebrow: "Azure · GitHub Actions · Terraform",
+    github: "https://github.com/rlule15/azure-cloud-resume",
     content:
       "A cloud-hosted personal portfolio website with automated CI/CD and infrastructure-as-code deployment.",
     bullets: [
@@ -124,7 +125,7 @@ onMounted(updateVisitorCount);
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
       </div>
-      <a class="nav-cta" href="mailto:rafael.lule@example.com"
+      <a class="nav-cta" href="mailto:rafael.lule.p@gmail.com"
         >Let's connect <span aria-hidden="true">↗</span></a
       >
     </nav>
@@ -144,7 +145,7 @@ onMounted(updateVisitorCount);
           <a class="button button-primary" href="#experience"
             >Explore my work <span aria-hidden="true">↓</span></a
           >
-          <a class="text-link" href="mailto:rafael.lule@example.com"
+          <a class="text-link" href="mailto:rafael.lule.p@gmail.com"
             >Email me <span aria-hidden="true">↗</span></a
           >
         </div>
@@ -210,9 +211,19 @@ onMounted(updateVisitorCount);
           class="project-entry"
         >
           <div class="project-index">0{{ projects.indexOf(project) + 1 }}</div>
-          <div>
-            <p class="project-tools">{{ project.eyebrow }}</p>
+          <p class="project-tools">{{ project.eyebrow }}</p>
+          <div class="project-heading-row">
             <h3>{{ project.title }}</h3>
+            <a
+              v-if="project.github"
+              :href="project.github"
+              target="_blank"
+              rel="noreferrer"
+              class="project-link"
+              >View on GitHub <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <div>
             <p class="entry-lede">{{ project.content }}</p>
             <ul>
               <li v-for="bullet in project.bullets" :key="bullet">
@@ -246,10 +257,16 @@ onMounted(updateVisitorCount);
         <h2>Let's <br /><em>connect.</em></h2>
       </div>
       <div class="footer-links">
-        <a href="mailto:rafael.lule@example.com"
+        <a href="mailto:rafael.lule.p@gmail.com"
           >Email <span aria-hidden="true">↗</span></a
-        ><a href="https://www.linkedin.com" target="_blank" rel="noreferrer"
+        ><a href="https://www.linkedin.com/in/rafael-lule-2bb458302" target="_blank" rel="noreferrer"
           >LinkedIn <span aria-hidden="true">↗</span></a
+        >
+        <a
+          href="https://github.com/rlule15"
+          target="_blank"
+          rel="noreferrer"
+          >GitHub <span aria-hidden="true">↗</span></a
         >
         <p class="visitor-count">
           <span

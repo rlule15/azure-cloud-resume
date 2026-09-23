@@ -13,38 +13,43 @@
   background: var(--paper);
   font-synthesis: none;
 }
+
 * {
   box-sizing: border-box;
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 body {
   margin: 0;
   min-width: 320px;
   background: var(--paper);
   background-image:
-    radial-gradient(
-      circle at 15% 10%,
+    radial-gradient(circle at 15% 10%,
       rgba(255, 255, 255, 0.8),
-      transparent 27rem
-    ),
+      transparent 27rem),
     linear-gradient(115deg, rgba(88, 117, 101, 0.055) 1px, transparent 1px);
   background-size:
     auto,
     28px 28px;
 }
+
 a {
   color: inherit;
   text-decoration: none;
 }
+
 a:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 5px;
 }
+
 main {
   overflow: hidden;
 }
+
 .site-nav {
   align-items: center;
   display: flex;
@@ -54,20 +59,24 @@ main {
   max-width: var(--max);
   padding: 2rem 2.5rem;
 }
+
 .wordmark {
   font-family: "DM Mono", monospace;
   font-size: 1.15rem;
   font-weight: 500;
   letter-spacing: 0.05em;
 }
+
 .wordmark span {
   color: var(--accent);
 }
+
 .nav-links {
   display: flex;
   gap: 2rem;
   margin-left: auto;
 }
+
 .nav-links a,
 .nav-cta,
 .text-link {
@@ -75,17 +84,21 @@ main {
   font-size: 0.8rem;
   letter-spacing: 0.02em;
 }
+
 .nav-links a {
   color: var(--muted);
 }
+
 .nav-links a:hover,
 .text-link:hover {
   color: var(--accent);
 }
+
 .nav-cta {
   border-bottom: 1px solid var(--ink);
   padding-bottom: 0.3rem;
 }
+
 .nav-cta span,
 .text-link span,
 .button span {
@@ -93,6 +106,7 @@ main {
   font-size: 1rem;
   margin-left: 0.45rem;
 }
+
 .page-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 0.42fr);
@@ -102,11 +116,13 @@ main {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
 }
+
 .hero {
   min-height: 650px;
   padding-bottom: 7rem;
   padding-top: 7.5rem;
 }
+
 .kicker,
 .project-tools,
 .section-number,
@@ -118,11 +134,13 @@ main {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+
 .kicker {
   align-items: center;
   display: flex;
   gap: 0.7rem;
 }
+
 .status-dot,
 .count-dot {
   background: var(--accent);
@@ -131,6 +149,7 @@ main {
   height: 0.5rem;
   width: 0.5rem;
 }
+
 .hero h1 {
   font-size: clamp(5rem, 12vw, 10.5rem);
   font-weight: 700;
@@ -138,41 +157,49 @@ main {
   line-height: 0.82;
   margin: 2.5rem 0;
 }
+
 .hero h1 em,
 h2 em {
   color: var(--accent);
   font-style: normal;
 }
+
 .hero-summary {
   font-size: 1.2rem;
   line-height: 1.7;
   max-width: 33rem;
 }
+
 .hero-actions {
   align-items: center;
   display: flex;
   gap: 2rem;
   margin-top: 3rem;
 }
+
 .button {
   display: inline-flex;
   font-family: "DM Mono", monospace;
   font-size: 0.8rem;
   padding: 1rem 1.3rem;
 }
+
 .button-primary {
   background: var(--ink);
   color: var(--paper);
 }
+
 .button-primary:hover {
   background: var(--accent);
 }
+
 .hero-aside {
   align-self: end;
   border-left: 1px solid var(--line);
   margin-bottom: 1rem;
   padding-left: 2rem;
 }
+
 .location-mark {
   color: var(--accent);
   font-family: "DM Mono", monospace;
@@ -180,19 +207,23 @@ h2 em {
   font-weight: 500;
   letter-spacing: -0.1em;
 }
+
 .hero-aside p {
   color: var(--muted);
   font-size: 0.95rem;
   line-height: 1.6;
 }
+
 .hero-aside strong {
   color: var(--ink);
   font-weight: 600;
 }
+
 .hero-note {
   margin-top: 5rem;
   max-width: 15rem;
 }
+
 .signal-band {
   border-bottom: 1px solid var(--line);
   border-top: 1px solid var(--line);
@@ -201,13 +232,16 @@ h2 em {
   margin: 0 auto;
   max-width: var(--max);
 }
+
 .signal-band div {
   border-right: 1px solid var(--line);
   padding: 2rem 2.5rem;
 }
+
 .signal-band div:last-child {
   border: 0;
 }
+
 .signal-band span {
   color: var(--accent);
   display: block;
@@ -215,19 +249,23 @@ h2 em {
   font-size: 0.65rem;
   margin-bottom: 1.4rem;
 }
+
 .signal-band strong {
   font-size: 1rem;
 }
+
 .signal-band p {
   color: var(--muted);
   font-size: 0.88rem;
   margin-bottom: 0;
 }
+
 .content-section {
   border-bottom: 1px solid var(--line);
   padding-bottom: 7rem;
   padding-top: 7rem;
 }
+
 .section-intro h2,
 .site-footer h2 {
   font-size: clamp(2.6rem, 5vw, 5rem);
@@ -235,39 +273,47 @@ h2 em {
   line-height: 0.95;
   margin: 1.5rem 0;
 }
-.section-intro > p:last-child {
+
+.section-intro>p:last-child {
   color: var(--muted);
   font-size: 1rem;
   line-height: 1.7;
   max-width: 16rem;
 }
+
 .section-body {
   border-top: 1px solid var(--line);
 }
+
 .resume-entry {
   border-bottom: 1px solid var(--line);
   padding: 2rem 0 2.8rem;
 }
+
 .resume-entry:last-child {
   border-bottom: 0;
 }
+
 .entry-meta {
   display: flex;
   gap: 1.3rem;
   justify-content: space-between;
 }
+
 .resume-entry h3,
 .project-entry h3,
 .skill-row h3 {
   font-size: 1.25rem;
   margin: 1.4rem 0 0.7rem;
 }
+
 .entry-lede {
   color: var(--muted);
   font-size: 1rem;
   line-height: 1.7;
   max-width: 40rem;
 }
+
 .resume-entry ul,
 .project-entry ul {
   color: var(--muted);
@@ -276,52 +322,63 @@ h2 em {
   margin: 1.5rem 0 0;
   padding-left: 1.1rem;
 }
+
 .resume-entry li,
 .project-entry li {
   margin: 0.55rem 0;
   padding-left: 0.25rem;
 }
+
 .resume-entry li::marker,
 .project-entry li::marker {
   color: var(--accent);
 }
+
 .project-section {
   background: rgba(224, 229, 220, 0.3);
   max-width: none;
 }
-.project-section > * {
+
+.project-section>* {
   width: 100%;
 }
+
 .project-section {
   grid-template-columns:
-    minmax(0, calc((100% - var(--max)) / 2 + 390px))
-    minmax(0, 1fr);
+    minmax(0, calc((100% - var(--max)) / 2 + 390px)) minmax(0, 1fr);
   padding-left: max(2.5rem, calc((100% - var(--max)) / 2 + 2.5rem));
   padding-right: max(2.5rem, calc((100% - var(--max)) / 2 + 2.5rem));
 }
+
 .project-list {
   display: grid;
   gap: 2rem;
   grid-template-columns: 1fr 1fr;
 }
+
 .project-entry {
   border-top: 1px solid var(--line);
   padding-top: 1.7rem;
 }
+
 .project-index {
   color: var(--accent);
   font-family: "DM Mono", monospace;
   font-size: 0.76rem;
 }
+
 .project-tools {
   margin: 1.5rem 0;
 }
+
 .project-entry h3 {
   max-width: 17rem;
 }
+
 .skills-list {
   border-top: 1px solid var(--line);
 }
+
 .skill-row {
   align-items: baseline;
   border-bottom: 1px solid var(--line);
@@ -330,18 +387,21 @@ h2 em {
   grid-template-columns: 0.65fr 1fr;
   padding: 1.7rem 0;
 }
+
 .skill-row h3 {
   font-family: "DM Mono", monospace;
   font-size: 0.78rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
+
 .skill-row p {
   color: var(--muted);
   font-size: 1rem;
   line-height: 1.6;
   margin: 0;
 }
+
 .site-footer {
   background: var(--ink);
   color: var(--paper);
@@ -349,45 +409,55 @@ h2 em {
   padding-bottom: 2.5rem;
   padding-top: 7rem;
 }
+
 .site-footer .kicker {
   color: #a4b1a9;
 }
+
 .site-footer h2 {
   margin-top: 3rem;
 }
+
 .footer-links {
   align-self: end;
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
 }
+
 .footer-links a {
   border-bottom: 1px solid #526059;
   font-family: "DM Mono", monospace;
   font-size: 0.82rem;
   padding-bottom: 0.8rem;
 }
+
 .footer-links a:hover {
   border-color: var(--accent);
   color: var(--accent);
 }
+
 .footer-links a span {
   color: var(--accent);
   float: right;
   font-size: 1rem;
 }
+
 .visitor-count {
   align-items: center;
   display: flex;
   gap: 0.6rem;
   margin-top: 2rem;
 }
+
 .count-dot {
   background: #78867e;
 }
+
 .count-dot.live {
   background: #8eb79d;
 }
+
 .footer-bottom {
   border-top: 1px solid #526059;
   color: #89978e;
@@ -399,80 +469,121 @@ h2 em {
   margin: 7rem 0 0;
   padding-top: 1.2rem;
 }
+
 @media (max-width: 760px) {
   .site-nav {
     padding: 1.5rem;
   }
+
   .nav-links {
     display: none;
   }
+
   .nav-cta {
     font-size: 0.72rem;
   }
+
   .page-grid,
   .project-section {
     display: block;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
+
   .hero {
     min-height: 600px;
     padding-bottom: 5rem;
     padding-top: 5rem;
   }
+
   .hero h1 {
     font-size: clamp(5rem, 25vw, 8rem);
   }
+
   .hero-aside {
     margin-top: 5rem;
   }
+
   .hero-note {
     margin-top: 2rem;
   }
+
   .signal-band {
     display: block;
   }
+
   .signal-band div {
     border-bottom: 1px solid var(--line);
     border-right: 0;
     padding: 1.5rem;
   }
+
   .signal-band div:last-child {
     border-bottom: 0;
   }
+
   .content-section {
     padding-bottom: 4.5rem;
     padding-top: 4.5rem;
   }
+
   .section-intro {
     margin-bottom: 3rem;
   }
+
   .project-list {
     display: block;
   }
-  .project-entry + .project-entry {
+
+  .project-entry+.project-entry {
     margin-top: 3rem;
   }
+
   .skill-row {
     display: block;
   }
+
   .skill-row h3 {
     margin-bottom: 0.8rem;
   }
+
   .site-footer {
     padding-bottom: 1.5rem;
     padding-top: 5rem;
   }
+
   .footer-links {
     margin-top: 4rem;
   }
+
   .footer-bottom {
     display: block;
     line-height: 1.7;
     margin-top: 5rem;
   }
+
   .footer-bottom span {
     display: block;
     margin-top: 0.6rem;
   }
+}
+
+.project-heading-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.project-code-link {
+  font-size: 0.875rem;
+  color: inherit;
+  opacity: 0.75;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  white-space: nowrap;
+}
+
+.project-code-link:hover {
+  opacity: 1;
 }
